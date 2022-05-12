@@ -1,23 +1,14 @@
-import Link from 'next/link';
 import groq from 'groq';
 import client from '../client';
+
+import Blogs from '../components/blogs';
+import Cta from '../components/cta';
 
 const Index = ({ posts }) => {
   return (
     <div>
-      <h1>Welcome to a blog!</h1>
-      {posts.length > 0 &&
-        posts.map(
-          ({ _id, title = '', slug = '', publishedAt = '' }) =>
-            slug && (
-              <li key={_id}>
-                <Link href='/posts/[slug]' as={`/posts/${slug.current}`}>
-                  <a>{title}</a>
-                </Link>{' '}
-                ({new Date(publishedAt).toDateString()})
-              </li>
-            )
-        )}
+      <Blogs posts={posts} />
+      <Cta />
     </div>
   );
 };
